@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'smartflow',
-    'api'
+    'api',
+    'drf_yasg',
+
 ]
 
 MIDDLEWARE = [
