@@ -24,8 +24,14 @@ Também foi adicionado sistema para gerir departamentos, sendo possível realiza
 2. Instale as dependências (`pip install -r requirements.txt`)
 3. Crie o arquivo `.env`, onde deve a chave `SECRET_KEY` com o conteúdo da chave secreta do Django (exemplo: `SECRET_KEY='super_secret123'`)
 4. Caso queira sistema de autenticação, insira a chave `AUTH_VARIABLE` como `True` dentro da `.env` e crie um usuário para ter acesso às API's (`python manage.py createsuperuser`)
-5. Criar as tabelas no banco de dados (`python manage.py migrate`)
-6. Execute o servidor (`python manage.py runserver`)
+5. Crie as models no banco de dados (`python manage.py makemigrations`)
+   > Sempre que houver alterações nos modelos, é necessário executar o comando acima para criar as migrações e o passo 6
+6. Criar as tabelas no banco de dados (`python manage.py migrate`)
+7. Execute o servidor (`python manage.py runserver`)
+
+   > Caso queira executar os testes automatizados, execute o comando `python manage.py test`
+
+8. Acesse o sistema em `http://localhost:8000/`
 
 ## API's
 
@@ -57,3 +63,9 @@ A aplicação conta com uma página Swagger (documentação da API) para consult
 ### Testes automatizados
 
 Os testes presentes no sistema são simples: testam cada operação do CRUD (deletar, criar, listar e atualizar) para as API's dos departamentos e dos empregados. Também é feito pequenos testes com offset e limit para garantir que a paginação está funcionando corretamente.
+
+### Docker
+
+Foi adicionado o Dockerfile para facilitar a execução do projeto, para executar o projeto com o Docker, basta executar os seguintes comandos:
+`docker build -t ocker build -t employee_service -f ./Dockerfile .`
+`docker compose up -d`
