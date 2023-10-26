@@ -31,7 +31,7 @@ Também foi adicionado sistema para gerir departamentos, sendo possível realiza
 
 A aplicação conta com uma página Swagger (documentação da API) para consultar, a URL para consultar o Swagger da sua aplicação é `/swagger/`.
 
-![Swagger](./readme/swagger.png)
+![Swagger](./readme/image/swagger.png)
 
 ### Empregados
 
