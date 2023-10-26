@@ -56,6 +56,22 @@ class EmployeeTest(APITestCase):
 
         results = response.data.get('results')
         self.assertEqual(len(results), 2 if self.createNew else 1)
+    
+    # Test listing all employees with offset 
+    def test_employee_list_offset(self):
+        response = self.client.get('/api/v1/employees?offset=1')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        results = response.data.get('results')
+        self.assertEqual(len(results), 0)
+
+    # Test listing all employees with limit
+    def test_employee_list_limit(self):
+        response = self.client.get('/api/v1/employees?limit=1')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        results = response.data.get('results')
+        self.assertEqual(len(results), 1)
 
     # Test getting a single employee
     def test_employee_get(self):
