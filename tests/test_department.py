@@ -11,6 +11,8 @@ class DepartmentTest(APITestCase):
     def setUp(self):
 
         # Create a test user and authenticate
+
+        # The database of tests is different from the database of the application, so there's no problem displaying the user's credentials
         self.user = User.objects.create(username='testuser', password='12345')
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
