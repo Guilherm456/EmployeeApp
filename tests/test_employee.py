@@ -1,7 +1,8 @@
 from rest_framework.test import APIRequestFactory, APIClient,APITestCase
 from rest_framework import status
 from django.contrib.auth.models import User
-
+from dotenv import load_dotenv
+import os
 # Define a test case for the Employee model
 class EmployeeTest(APITestCase):
     last_employee = 0  # Keep track of the last employee created
@@ -9,14 +10,20 @@ class EmployeeTest(APITestCase):
 
     # Set up the test case
     def setUp(self):
-
-        # Create a test user and authenticate
-
-        # The database of tests is different from the database of the application
-        # So we need to create a user in the test database
-        self.user = User.objects.create(username='testuser', password='12345')
         self.client = APIClient()
-        self.client.force_authenticate(user=self.user)
+
+        # Load the environment variables
+        load_dotenv()
+
+        need_auth = os.getenv('AUTH_VARIABLE', default=False)
+
+
+        # Create a test user and authenticate (if needed)
+        if need_auth:
+            # The database of tests is different from the database of the application
+            # So we need to create a user in the test database
+            self.user = User.objects.create(username='testuser', password='12345')
+            self.client.force_authenticate(user=self.user)
 
         # Create a department for the employee
         response = self.client.post('/api/v1/departments', {
