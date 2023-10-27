@@ -10,7 +10,7 @@ class Employee(models.Model):
     # Name of the employee
     name = models.CharField(max_length=50)
     # Email of the employee
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
     # Department of the employee
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     # Date of creation of the employee
