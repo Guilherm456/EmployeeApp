@@ -23,10 +23,9 @@ SECRET_KEY =  os.getenv('SECRET_KEY')
 
 
 DEBUG = os.getenv('DEBUG', default=True)=='True'
-
 AUTH_VARIABLE = os.getenv('AUTH_VARIABLE', default=False)=='True'
 
-ALLOWED_HOSTS =['.vercel.app'] if not DEBUG else ['*']
+ALLOWED_HOSTS =['.vercel.app', '127.0.0.1' ] if not DEBUG else []
 
 
 # Application definition

@@ -23,6 +23,7 @@ Também foi adicionado sistema para gerir departamentos, sendo possível realiza
 1. Clone o repositório (`git clone URL`)
 2. Instale as dependências (`pip install -r requirements.txt`)
 3. Crie o arquivo `.env`, onde deve a chave `SECRET_KEY` com o conteúdo da chave secreta do Django (exemplo: `SECRET_KEY='super_secret123'`)
+   > Você pode definir também `DEBUG` como `True` para poder testar o sistema em modo de desenvolvimento
 4. Caso queira sistema de autenticação, insira a chave `AUTH_VARIABLE` como `True` dentro da `.env` e crie um usuário para ter acesso às API's (`python manage.py createsuperuser`)
 5. Crie as models no banco de dados (`python manage.py makemigrations`)
    > Por padrão, será carregado o banco de dados SQLite, caso queira utilizar POSTGRES (para pode fazer deploy na Vercel), adiciona na `.env`:
