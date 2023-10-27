@@ -25,7 +25,15 @@ Também foi adicionado sistema para gerir departamentos, sendo possível realiza
 3. Crie o arquivo `.env`, onde deve a chave `SECRET_KEY` com o conteúdo da chave secreta do Django (exemplo: `SECRET_KEY='super_secret123'`)
 4. Caso queira sistema de autenticação, insira a chave `AUTH_VARIABLE` como `True` dentro da `.env` e crie um usuário para ter acesso às API's (`python manage.py createsuperuser`)
 5. Crie as models no banco de dados (`python manage.py makemigrations`)
-   > Sempre que houver alterações nos modelos, é necessário executar o comando acima para criar as migrações e o passo 6
+   > Por padrão, será carregado o banco de dados SQLite, caso queira utilizar POSTGRES (para pode fazer deploy na Vercel), adiciona na `.env`:
+   - `DATABASE_OPTION` como `POSTGRES`
+   - `POSTGRES_URL` com a URL do banco de dados
+   - `POSTGRES_USER` com o usuário do banco de dados
+   - `POSTGRES_HOST` com o host do banco de dados
+   - `POSTGRES_PASSWORD` com a senha do banco de dados
+   - `POSTGRES_DATABASE` com o nome do banco de dados
+   - `POSTGRES_DB_PORT` com a porta do banco de dados
+     > Sempre que houver alterações nos modelos, é necessário executar o comando acima para criar as migrações e o passo 6
 6. Criar as tabelas no banco de dados (`python manage.py migrate`)
 7. Execute o servidor (`python manage.py runserver`)
 
@@ -44,6 +52,7 @@ A aplicação conta com uma página Swagger (documentação da API) para consult
 - Listar empregados: `GET /api/v1/employees/`
   > O retorno da lista é paginada, você pode passar offset para o número da página e limit para limitar o número de retorno na lista (exemplo: `/api/v1/employees?limit=10&offset=0`)
 - Criar empregado: `POST /api/v1/employees/`
+  > Exemplo de JSON para criar um empregado: `{"name": "Empregado 1", "email": "empregado@gmail.com", "department": 1}`
 - Editar empregado: `PUT /api/v1/employees/{id}/`
 - Remover empregado: `DELETE /api/v1/employees/{id}/`
 
@@ -52,6 +61,7 @@ A aplicação conta com uma página Swagger (documentação da API) para consult
 - Listar departamentos: `GET /api/v1/departments/`
   > O retorno da lista é paginada, você pode passar offset para o número da página e limit para limitar o número de retorno na lista (exemplo: `/api/v1/employees?limit=10&offset=0`)
 - Criar departamento: `POST /api/v1/departments/`
+  > Exemplo de JSON para criar um departamento: `{"name": "Departamento 1", "description": "Descrição do departamento 1"}`
 - Editar departamento: `PUT /api/v1/departments/{id}/`
 - Remover departamento: `DELETE /api/v1/departments/{id}/`
 

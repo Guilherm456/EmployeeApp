@@ -22,11 +22,11 @@ load_dotenv()
 SECRET_KEY =  os.getenv('SECRET_KEY')
 
 
-DEBUG = os.getenv('DEBUG', default=True)
+DEBUG = os.getenv('DEBUG', default=True)=='True'
 
-AUTH_VARIABLE = os.getenv('AUTH_VARIABLE', default=False)
+AUTH_VARIABLE = os.getenv('AUTH_VARIABLE', default=False)=='True'
 
-ALLOWED_HOSTS =[]
+ALLOWED_HOSTS =['.vercel.app'] if not DEBUG else ['*']
 
 
 # Application definition
@@ -94,10 +94,18 @@ WSGI_APPLICATION = 'smartflow.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DATABASE_OPTION = os.getenv('DATABASE_OPTION', default='sqlite3')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    } if DATABASE_OPTION == 'sqlite3' else {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_DB_PORT'),
     }
 }
 
